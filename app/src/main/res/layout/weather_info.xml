@@ -56,8 +56,6 @@
             android:layout_toLeftOf="@id/title_share"
             android:src="@drawable/base_action_bar_action_city" />
 
-
-
     </RelativeLayout>
 
 
