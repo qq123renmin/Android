@@ -96,6 +96,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     //解析xml内部分信息
     private void parseXML(String xmldata){
         try{
+            int fengxiangCount=0;
+            int fengliCount=0;
+            int dateCount=0;
+            int highCount=0;
+            int lowCount=0;
+            int typeCount=0;
             XmlPullParserFactory fac = XmlPullParserFactory.newInstance();
             XmlPullParser xmlPullParser = fac.newPullParser();
             xmlPullParser.setInput(new StringReader(xmldata));
@@ -115,6 +121,52 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         else if(xmlPullParser.getName().equals("updatetime")){
                             eventType = xmlPullParser.next();
                             Log.d("myapp2","updatetime: "+xmlPullParser.getText());
+                        }
+                        else if(xmlPullParser.getName().equals("shidu")){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","shidu: "+xmlPullParser.getText());
+                        }
+                        else if(xmlPullParser.getName().equals("wendu")){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","wendu: "+xmlPullParser.getText());
+                        }
+                        else if(xmlPullParser.getName().equals("pm2.5")){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","pm2.5: "+xmlPullParser.getText());
+                        }
+                        else if(xmlPullParser.getName().equals("quality")){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","quality: "+xmlPullParser.getText());
+                        }
+                        else if(xmlPullParser.getName().equals("fengxiang")&&fengxiangCount==0){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","fengxiang: "+xmlPullParser.getText());
+                            fengxiangCount++;
+                        }
+                        else if(xmlPullParser.getName().equals("fengli")&&fengliCount==0){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","fengli: "+xmlPullParser.getText());
+                            fengliCount++;
+                        }
+                        else if(xmlPullParser.getName().equals("date")&&dateCount==0){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","date: "+xmlPullParser.getText());
+                            dateCount++;
+                        }
+                        else if(xmlPullParser.getName().equals("high")&&highCount==0){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","high: "+xmlPullParser.getText());
+                            highCount++;
+                        }
+                        else if(xmlPullParser.getName().equals("low")&&lowCount==0){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","low: "+xmlPullParser.getText());
+                            lowCount++;
+                        }
+                        else if(xmlPullParser.getName().equals("type")&&typeCount==0){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","type: "+xmlPullParser.getText());
+                            typeCount++;
                         }
 
                         break;
