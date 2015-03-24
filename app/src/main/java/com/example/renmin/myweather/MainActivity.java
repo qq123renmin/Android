@@ -20,10 +20,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.zip.GZIPInputStream;
 
 
@@ -90,9 +93,47 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
+    //解析xml内部分信息
+    private void parseXML(String xmldata){
+        try{
+            XmlPullParserFactory fac = XmlPullParserFactory.newInstance();
+            XmlPullParser xmlPullParser = fac.newPullParser();
+            xmlPullParser.setInput(new StringReader(xmldata));
+            int eventType = xmlPullParser.getEventType();
+            Log.d("myapp2","parseXML");
+            while (eventType != XmlPullParser.END_DOCUMENT){
+                switch (eventType) {
+                    //判断当前时间是否为文档开始事件
+                    case XmlPullParser.START_DOCUMENT:
+                        break;
+                    //判断当前时间是否为标记元素开始事件
+                    case XmlPullParser.START_TAG:
+                        if(xmlPullParser.getName().equals("city")){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","city: "+xmlPullParser.getText());
+                        }
+                        else if(xmlPullParser.getName().equals("updatetime")){
+                            eventType = xmlPullParser.next();
+                            Log.d("myapp2","updatetime: "+xmlPullParser.getText());
+                        }
+
+                        break;
+                    //判断当前事件是否为标签元素结束事件
+                    case XmlPullParser.END_TAG:
+                        break;
+
+                }
+                //进入下一个元素并处罚相应事件
+                eventType = xmlPullParser.next();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 //    根据城市编号查询所对应的天气
     private void queryWeatherCode(String cityCode){
-        final String address = " http://wthrcdn.etouch.cn/WeatherApi?citykey=" + cityCode;
+        final String address = "http://wthrcdn.etouch.cn/WeatherApi?citykey=" + cityCode;
         Log.d("myWeather", address);
         new Thread(new Runnable() {
             @Override
@@ -115,6 +156,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         }
                         String responseStr = response.toString();
                         Log.d("myWeather", responseStr);
+                        parseXML(responseStr);
                     }
                 }catch (Exception e){
                     e.printStackTrace();
