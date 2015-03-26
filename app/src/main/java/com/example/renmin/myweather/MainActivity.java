@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,8 +33,10 @@ import java.util.zip.GZIPInputStream;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     private ImageView mUpdateBtn;
+    //private Button test_button;
 
-    @Override
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         String tag = "0";
         super.onCreate(savedInstanceState);
@@ -93,7 +96,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    //解析xml内部分信息
+    //用pull解析xml内部分信息
     private void parseXML(String xmldata){
         try{
             int fengxiangCount=0;
