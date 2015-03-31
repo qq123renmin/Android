@@ -1,6 +1,20 @@
 package com.example.renmin.bean;
 
+import android.util.Log;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Created by renmin on 2015/3/24.
@@ -121,15 +135,6 @@ public class TodayWeather {
         return "TodayWeather{" +"city='" + city + '\'' + ", updatetime='" + updatetime + '\''+", wendu='" + wendu + '\''+ ", shidu='" + shidu + '\''+ ", pm25='" + pm25 + '\''+ ", quality='" + quality + '\''+ ", fengxiang='" + fengxiang + '\''+ ", fengli='" + fengli + '\''+ ", date='" + date + '\''+ ", high='" + high + '\''+ ", low='" + low + '\''+ ", type='" + type + '\''+ '}';
     }
 
-    private TodayWeather parseXML(String xmldata) {
-        TodayWeather todayWeather = null;
-        try {
-            int fengxiangCount = 0;
 
-            case XmlPullParser.START_TAG:
-                if（xmlPullParser.getName().equals("resp")）{
-                todayWeather = new TodayWeather();
-            }
-        }
-    }
+
 }
