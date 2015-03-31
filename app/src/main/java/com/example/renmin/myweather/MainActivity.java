@@ -45,15 +45,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         mUpdateBtn = (ImageView) findViewById(R.id.title_update_btn);
         mUpdateBtn.setOnClickListener(this);
 
-//        DisplayMetrics metrics = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//        int width = metrics.widthPixels;
-//        int height = metrics.heightPixels;
-//        float density = metrics.density;
-//        int densityDpi = metrics.densityDpi;
-//        Log.e(tag + " DisplayMetrics(222)", " screenWidth=" + width + "; screenHeight=" + height);
-//        Log.e(tag + " DisplayMetrics(222)"," screendensity=" + density + "; screendensityDpi=" + densityDpi);
-
     }
 
 

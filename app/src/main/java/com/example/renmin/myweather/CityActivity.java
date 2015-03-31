@@ -8,9 +8,10 @@ import android.widget.Button;
 /**
  * Created by renmin on 2015/3/26.
  */
-public class CityActivity extends Activity{
+public class CityActivity extends Activity {
 
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+}
