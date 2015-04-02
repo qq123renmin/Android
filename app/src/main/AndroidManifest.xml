@@ -19,9 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".DB_Activity"
-            android:label="@string/title_activity_db_" >
+            android:name=".SelectCity"
+            android:label="选择城市" >
         </activity>
     </application>
 

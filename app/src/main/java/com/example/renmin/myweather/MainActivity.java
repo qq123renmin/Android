@@ -1,5 +1,6 @@
 package com.example.renmin.myweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
@@ -32,7 +33,7 @@ import java.util.zip.GZIPInputStream;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
     private ImageView mUpdateBtn;
-
+    private ImageView mCitySelect;
     private TextView cityTv, timeTv, humidityTv, weekTv, pmDataTv, pmQualityTv, temperatureTv, climateTv, windTv;
     private ImageView weatherImg, pmImg;
 
@@ -49,6 +50,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         climateTv = (TextView) findViewById(R.id.climate);
         windTv = (TextView) findViewById(R.id.wind);
         weatherImg = (ImageView) findViewById(R.id.weather_img);
+        mCitySelect = (ImageView) findViewById(R.id.title_city_manager);
+        mCitySelect.setOnClickListener(this);
         cityTv.setText("N/A");
         timeTv.setText("N/A");
         humidityTv.setText("N/A");
@@ -104,6 +107,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view){
+        if (view.getId()==R.id.title_city_manager){
+            Intent intent = new Intent(this, SelectCity.class);
+            startActivity(intent);
+        }
         if(view.getId() == R.id.title_update_btn){
             SharedPreferences sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
             String cityCode = sharedPreferences.getString("main_city_code","101010100");
@@ -162,7 +169,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                                 eventType = xmlPullParser.next();
                                 todayWeather.setWendu(xmlPullParser.getText());
                             }
-                            else if(xmlPullParser.getName().equals("pm2.5")){
+                            else if(xmlPullParser.getName().equals("pm25")){
                                 eventType = xmlPullParser.next();
                                 todayWeather.setPm25(xmlPullParser.getText());
                             }
